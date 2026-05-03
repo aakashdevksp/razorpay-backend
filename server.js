@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const Razorpay = require("razorpay");
 const cors = require("cors");
@@ -8,18 +9,21 @@ app.use(cors());
 
 // 🔐 Replace with your Razorpay keys
 const razorpay = new Razorpay({
-  key_id: "YOUR_KEY_ID",
-  key_secret: "YOUR_SECRET"
+  key_id: process.env.key_id,
+  key_secret: process.env.key_secret
 });
 
 // ✅ Create Order API
 app.post("/create-order", async (req, res) => {
   try {
-    const { amount } = req.body;
+   const { amount } = req.body || {};
 
-    if (!amount) {
-      return res.status(400).json({ error: "Amount is required" });
-    }
+if (!amount) {
+  return res.status(400).json({
+    success: false,
+    message: "Amount is required"
+  });
+}
 
     const options = {
       amount: amount, // paisa (₹500 = 50000)
