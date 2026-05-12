@@ -36,8 +36,8 @@ router.post("/verify",async (req,res)=>{
                         .update(body.toString())
                         .digest("hex");
 
-                        const isAuthentic=true;
-                       // expectedSignature === rozarpay_signature;
+                        const isAuthentic=
+                        expectedSignature === rozarpay_signature;
 
                         if(!isAuthentic){
                            return res.status(400).json({
