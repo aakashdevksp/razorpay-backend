@@ -7,6 +7,7 @@ const sequelize=require("./db");
 
 const authRoutes=require("./routes/authRoutes");
 const cartRoutes=require("./routes/cartRoutes");
+const orderRoutes=require("./routes/orderRoutes");
 
 
 
@@ -20,6 +21,7 @@ app.use(cors());
 //ROUTES
 app.use("/auth",authRoutes);
 app.use("/cart",cartRoutes);
+app.use("/orders",orderRoutes);
 
 
 
